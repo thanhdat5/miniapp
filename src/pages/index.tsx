@@ -1,6 +1,6 @@
 import { Button } from '@/components'
 import { telegramInitDataRawToObject } from '@/utils'
-import { retrieveLaunchParams } from '@telegram-apps/sdk'
+import { retrieveLaunchParams, useLaunchParams, useInitData } from '@telegram-apps/sdk'
 import { Modal, Placeholder, Spinner } from '@telegram-apps/telegram-ui'
 import { useEffect, useState, type FC } from 'react'
 
@@ -21,6 +21,10 @@ const API_PLAY = `${API_URL}/user/increase-point`
 export const IndexPage: FC = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>(undefined)
   const [error, setError] = useState('')
+  const initDataRaw1 = useLaunchParams().initDataRaw;
+  const initData1 = useInitData();
+  console.log(initDataRaw1)
+  console.log(initData1)
 
   // Get Telegram init raw data
   const { initDataRaw } = retrieveLaunchParams()
