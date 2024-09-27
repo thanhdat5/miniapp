@@ -24,14 +24,14 @@ export const IndexPage: FC = () => {
 
   // Get Telegram init raw data
   const { initDataRaw } = retrieveLaunchParams()
-  const tma = `query_id=AAFCficsAAAAAEJ-JyxgG9l3&${initDataRaw}`
+  const tma = `${initDataRaw}`
   const teleUser = telegramInitDataRawToObject(initDataRaw ?? '')
   console.log(teleUser)
 
   // Define header config
   const headerConfig: Partial<RequestInit> = {
     headers: {
-      Authorization: `tma ${tma}`,
+      Authorization: `bearer ${tma}`,
       'Content-Type': 'application/json'
     }
   }
