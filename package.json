@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://telegram-mini-apps.github.io/eternal-kingdoms-play-to-airdrop",
+  "homepage": "https://miniapp.kingdoms.game/",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "dev": "vite",

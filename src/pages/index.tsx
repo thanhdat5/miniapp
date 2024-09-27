@@ -22,14 +22,17 @@ export const IndexPage: FC = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>(undefined)
   const [error, setError] = useState('')
 
-  // Get Telegram init data
+  // Get Telegram init raw data
   const { initDataRaw } = retrieveLaunchParams()
+  const tma =
+    'query_id=AAFCficsAAAAAEJ-JyxgG9l3&user=%7B%22id%22%3A740785730%2C%22first_name%22%3A%22Tho%E1%BA%A1i%22%2C%22last_name%22%3A%22Nguyen%22%2C%22username%22%3A%22roster90%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1727450617&hash=48732104a0c7e16dfc3acbb3b5c143f9ae21e0b136bf368057d446a4a3888eb8'
   const teleUser = telegramInitDataRawToObject(initDataRaw ?? '')
+  console.log(teleUser)
 
   // Define header config
   const headerConfig: Partial<RequestInit> = {
     headers: {
-      Authorization: `tma ${initDataRaw}`,
+      Authorization: `tma ${tma}`,
       'Content-Type': 'application/json'
     }
   }
@@ -67,9 +70,9 @@ export const IndexPage: FC = () => {
       })
         .then(async (res) => {
           // Create new account
+          console.log(res)
           if (res.status === 403) {
-            const response = await createNewAccount()
-            console.log(response)
+            await createNewAccount()
             // TODO
             return
           }
@@ -77,7 +80,11 @@ export const IndexPage: FC = () => {
           // Set user info
           if (res.status === 200) {
             const userData = await res.json()
-            setUserInfo(userData as UserInfo)
+            if (!userData.data) {
+              await createNewAccount()
+            } else {
+              setUserInfo(userData as UserInfo)
+            }
           }
 
           // Other case
