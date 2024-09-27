@@ -24,7 +24,7 @@ export const IndexPage: FC = () => {
 
   // Get Telegram init raw data
   const { initDataRaw } = retrieveLaunchParams()
-  const tma = `${initDataRaw}`
+  const tma = `query_id=AAFCficsAAAAAEJ-JyxgG9l3&${initDataRaw}`
   const teleUser = telegramInitDataRawToObject(initDataRaw ?? '')
   console.log(teleUser)
 
