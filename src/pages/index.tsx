@@ -1,6 +1,7 @@
 import { Button } from '@/components'
 import { telegramInitDataRawToObject } from '@/utils'
-import { retrieveLaunchParams, useLaunchParams, useInitData } from '@telegram-apps/sdk'
+import { retrieveLaunchParams } from '@telegram-apps/sdk'
+import { useInitData, useLaunchParams } from '@telegram-apps/sdk-react';
 import { Modal, Placeholder, Spinner } from '@telegram-apps/telegram-ui'
 import { useEffect, useState, type FC } from 'react'
 
