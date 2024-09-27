@@ -1,7 +1,6 @@
 import { Button } from '@/components'
 import { telegramInitDataRawToObject } from '@/utils'
 import { retrieveLaunchParams } from '@telegram-apps/sdk'
-import { useInitData, useLaunchParams } from '@telegram-apps/sdk-react';
 import { Modal, Placeholder, Spinner } from '@telegram-apps/telegram-ui'
 import { useEffect, useState, type FC } from 'react'
 
@@ -22,21 +21,17 @@ const API_PLAY = `${API_URL}/user/increase-point`
 export const IndexPage: FC = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>(undefined)
   const [error, setError] = useState('')
-  const initDataRaw1 = useLaunchParams().initDataRaw;
-  const initData1 = useInitData();
-  console.log(initDataRaw1)
-  console.log(initData1)
 
   // Get Telegram init raw data
   const { initDataRaw } = retrieveLaunchParams()
-  const tma = `query_id=AAFCficsAAAAAEJ-JyxgG9l3&${initDataRaw}`
+  const tma = `${initDataRaw}`
   const teleUser = telegramInitDataRawToObject(initDataRaw ?? '')
   console.log(teleUser)
 
   // Define header config
   const headerConfig: Partial<RequestInit> = {
     headers: {
-      Authorization: `bearer ${tma}`,
+      Authorization: `tma ${tma}`,
       'Content-Type': 'application/json'
     }
   }
